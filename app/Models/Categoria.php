@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-class Categoria extends Model
-{
-    protected $table = 'categorias';
-    protected $fillable = ['nome', 'descricao'];
-=======
 <?php
 
 namespace App\Models;
@@ -21,5 +15,4 @@ class Categoria extends Model
         'nome',
         'descricao',
     ];
->>>>>>> 89fbab5 (feat: ajusta rotas, banco de dados sqlite e assets do modulo de categorias)
 }
