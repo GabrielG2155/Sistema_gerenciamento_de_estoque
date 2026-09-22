@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+<<<<<<< HEAD
         Schema::create('table_categorias', function (Blueprint $table) {
+=======
+        Schema::create('categorias', function (Blueprint $table) {
+>>>>>>> 89fbab5 (feat: ajusta rotas, banco de dados sqlite e assets do modulo de categorias)
             $table->id();
             $table->string('nome',100);
             $table->text('descricao')->nullable();
