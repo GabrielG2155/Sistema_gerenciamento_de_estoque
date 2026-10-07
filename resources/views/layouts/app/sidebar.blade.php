@@ -18,6 +18,14 @@
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
+            <flux:sidebar.nav>
+                <flux:sidebar.group :heading="__('')" class="grid">
+                    <flux:sidebar.item icon="home" :href="route('marcas.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Marcas') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
+            </flux:sidebar.nav>
+
             <flux:spacer />
 
             <flux:sidebar.nav>

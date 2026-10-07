@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-<<<<<<< HEAD
-        Schema::create('table_marcas', function (Blueprint $table) {
-=======
         Schema::create('marcas', function (Blueprint $table) {
->>>>>>> 89fbab5 (feat: ajusta rotas, banco de dados sqlite e assets do modulo de categorias)
             $table->id();
             $table->string('nome',100);
             $table->text('descricao')->nullable();
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_marcas');
+        Schema::dropIfExists('marcas');
     }
 };

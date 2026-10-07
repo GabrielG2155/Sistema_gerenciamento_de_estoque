@@ -1,10 +1,10 @@
-<x-layouts::app title="Lista de categorias">
+<x-layouts::app title="Lista de marcas">
     <section class="mx-auto w-full max-w-4xl space-y-6">
         @if (session('sucesso'))
             <p class="text-green-600">{{ session('sucesso') }}</p>
         @endif
 
-        <a href="{{ route('categorias.create') }}">Nova categoria</a>
+        <a href="{{ route('marcas.create') }}">Nova marca</a>
 
         <table>
             <thead>
@@ -16,16 +16,16 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($categorias as $categoria)
+                @forelse ($marcas as $marca)
                     <tr>
-                        <td>{{ $categoria->id }}</td>
-                        <td>{{ $categoria->nome }}</td>
-                        <td>{{ $categoria->descricao ?? 'Sem descrição' }}</td>
+                        <td>{{ $marca->id }}</td>
+                        <td>{{ $marca->nome }}</td>
+                        <td>{{ $marca->descricao ?? 'Sem descrição' }}</td>
                         <td>
-                            <a href="{{ route('categorias.show', $categoria) }}">Ver</a>
-                            <a href="{{ route('categorias.edit', $categoria) }}">Editar</a>
+                            <a href="{{ route('marcas.show', $marca) }}">Ver</a>
+                            <a href="{{ route('marcas.edit', $marca) }}">Editar</a>
 
-                            <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja excluir?');">
+                            <form action="{{ route('marcas.destroy', $marca) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja excluir?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Excluir</button>
@@ -34,7 +34,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">Nenhuma categoria cadastrada.</td>
+                        <td colspan="4">Nenhuma marca cadastrada.</td>
                     </tr>
                 @endforelse
             </tbody>
