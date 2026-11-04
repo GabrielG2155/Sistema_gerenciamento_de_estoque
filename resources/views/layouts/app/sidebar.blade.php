@@ -10,13 +10,13 @@
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
-            <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Categorias') }}
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
-            </flux:sidebar.nav>
+            <flux:navlist.item 
+                icon="home" 
+                :href="route('categorias.index')" 
+                :current="request()->routeIs('categorias.*')"
+            >
+                {{ __('Categorias') }}
+            </flux:navlist.item>
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('')" class="grid">
@@ -25,6 +25,24 @@
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
+
+                    
+            <flux:sidebar.nav>
+                <flux:sidebar.group :heading="__('')" class="grid">
+                    <flux:sidebar.item icon="home" :href="route('produtos.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Produtos') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
+            </flux:sidebar.nav>
+
+            <flux:sidebar.nav>
+                <flux:sidebar.group :heading="__('')" class="grid">
+                    <flux:sidebar.item icon="home" :href="route('fornecedores.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Fornecedores') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
+            </flux:sidebar.nav>
+
 
             <flux:spacer />
 

@@ -1,9 +1,15 @@
 @csrf
+<flux:input name="nome" label="Nome" :value="old('nome', $marca->nome ?? '')" required maxlength="100" />
+@error('nome')
+    <p role="alert" class="text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+@enderror
 
-<flux:input name="nome" :value="old('nome', $marca->nome ?? '')" />
+<flux:textarea name="descricao" label="Descrição (opcional)" rows="4" maxlength="1000">{{ old('descricao', $marca->descricao ?? '') }}</flux:textarea>
+@error('descricao')
+    <p role="alert" class="text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+@enderror
 
-<flux:textarea name="descricao">
-    {{ old('descricao', $marca->descricao ?? '') }}
-</flux:textarea>
-
-<flux:button type="submit">Salvar</flux:button>
+<div class="flex items-center gap-4">
+    <flux:button type="submit" variant="primary">Salvar</flux:button>
+    <a class="underline" href="{{ route('marcas.index') }}">Cancelar</a>
+</div>
