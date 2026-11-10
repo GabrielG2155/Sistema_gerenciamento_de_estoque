@@ -25,6 +25,7 @@
                         <th scope="col" class="p-4">Nome</th>
                         <th scope="col" class="p-4">CNPJ</th>
                         <th scope="col" class="p-4">E-mail</th>
+                        <th scope="col" class="p-4">Telefone</th>
                         <th scope="col" class="p-4">Ações</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                             <td class="max-w-xs break-words p-4">{{ $fornecedor->nome }}</td>
                             <td class="p-4">{{ $fornecedor->cnpj }}</td>
                             <td class="p-4">{{ $fornecedor->email }}</td>
+                            <td class="p-4">{{ $fornecedor->telefone}}</td>
                             <td class="p-4">
                                 <div class="flex flex-wrap items-center gap-3">
                                     <a class="underline" href="{{ route('fornecedores.show', $fornecedor) }}">Ver</a>

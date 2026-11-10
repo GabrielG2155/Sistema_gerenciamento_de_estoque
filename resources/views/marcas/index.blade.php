@@ -1,7 +1,7 @@
 {{-- Reutiliza o layout do projeto em resources/views/layouts/app.blade.php. --}}
-<x-layouts::app title="marcas">
+<x-layouts::app title="Marcas">
     <section lang="pt-BR" class="mx-auto w-full max-w-4xl space-y-6">
-        <h1 class="text-2xl font-semibold">marcas</h1>
+        <h1 class="text-2xl font-semibold">Marcas</h1>
 
         {{-- A mensagem de sucesso aparece após cadastrar, editar ou excluir. --}}
         @if (session('sucesso'))
@@ -10,7 +10,7 @@
             </p>
         @endif
 
-        <flux:button :href="route('marcas.create')" variant="primary">Nova categoria</flux:button>
+        <flux:button :href="route('marcas.create')" variant="primary">Nova Marca</flux:button>
         @if (session('erro'))
             <p role="alert" class="rounded-lg border border-red-600 p-4 text-red-600 dark:text-red-400">
                 {{ session('erro') }}

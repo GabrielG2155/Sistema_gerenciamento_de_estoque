@@ -11,7 +11,7 @@
             </flux:sidebar.header>
 
             <flux:navlist.item 
-                icon="home" 
+                icon="folder" 
                 :href="route('categorias.index')" 
                 :current="request()->routeIs('categorias.*')"
             >
@@ -20,7 +20,7 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('marcas.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="tag" :href="route('marcas.index')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Marcas') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
@@ -29,7 +29,7 @@
                     
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('produtos.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="cube" :href="route('produtos.index')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Produtos') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
@@ -37,7 +37,7 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('fornecedores.index')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="user" :href="route('fornecedores.index')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Fornecedores') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
@@ -46,15 +46,7 @@
 
             <flux:spacer />
 
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
 
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
-                </flux:sidebar.item>
-            </flux:sidebar.nav>
 
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
         </flux:sidebar>

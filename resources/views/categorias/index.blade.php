@@ -1,43 +1,57 @@
-<x-layouts::app title="Lista de categorias">
-    <section class="mx-auto w-full max-w-4xl space-y-6">
+<x-layouts::app title="Categorias">
+    <section lang="pt-BR" class="mx-auto w-full max-w-4xl space-y-6">
+        <h1 class="text-2xl font-semibold">Categorias</h1>
+
         @if (session('sucesso'))
-            <p class="text-green-600">{{ session('sucesso') }}</p>
+            <p role="status" class="rounded-lg border border-green-600 p-4 text-green-700 dark:text-green-400">
+                {{ session('sucesso') }}
+            </p>
         @endif
 
-        <a href="{{ route('categorias.create') }}">Nova categoria</a>
+        @if (session('erro'))
+            <p role="alert" class="rounded-lg border border-red-600 p-4 text-red-600 dark:text-red-400">
+                {{ session('erro') }}
+            </p>
+        @endif
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($categorias as $categoria)
-                    <tr>
-                        <td>{{ $categoria->id }}</td>
-                        <td>{{ $categoria->nome }}</td>
-                        <td>{{ $categoria->descricao ?? 'Sem descrição' }}</td>
-                        <td>
-                            <a href="{{ route('categorias.show', $categoria) }}">Ver</a>
-                            <a href="{{ route('categorias.edit', $categoria) }}">Editar</a>
+        <flux:button :href="route('categorias.create')" variant="primary">Nova categoria</flux:button>
 
-                            <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja excluir?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Excluir</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
+        <div class="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-700">
+            <table class="w-full text-left text-sm">
+                <caption class="sr-only">Lista de categorias cadastradas</caption>
+                <thead class="bg-zinc-100 dark:bg-zinc-900">
                     <tr>
-                        <td colspan="4">Nenhuma categoria cadastrada.</td>
+                        <th scope="col" class="p-4">Código</th>
+                        <th scope="col" class="p-4">Nome</th>
+                        <th scope="col" class="p-4">Descrição</th>
+                        <th scope="col" class="p-4">Ações</th>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($categorias as $categoria)
+                        <tr class="border-t border-zinc-200 dark:border-zinc-700">
+                            <td class="p-4">{{ $categoria->id }}</td>
+                            <td class="max-w-xs break-words p-4">{{ $categoria->nome }}</td>
+                            <td class="max-w-sm break-words p-4">{{ $categoria->descricao ?? 'Sem descrição' }}</td>
+                            <td class="p-4">
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <a class="underline" href="{{ route('categorias.show', $categoria) }}">Ver</a>
+                                    <a class="underline" href="{{ route('categorias.edit', $categoria) }}">Editar</a>
+                                    <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" onsubmit="return confirm('Deseja excluir esta categoria?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="cursor-pointer text-red-600 underline dark:text-red-400">Excluir</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="p-6 text-center">Nenhuma categoria cadastrada.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </section>
 </x-layouts::app>
