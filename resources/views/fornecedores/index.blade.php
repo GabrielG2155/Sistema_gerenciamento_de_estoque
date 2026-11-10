@@ -15,6 +15,20 @@
         @endif
 
         <flux:button :href="route('fornecedores.create')" variant="primary">Novo fornecedor</flux:button>
+        <form method="GET" action="{{ route('fornecedores.index') }}" class="flex items-center gap-2 mb-4">
+            <div class="flex-1 max-w-sm">
+                <flux:input 
+                    name="search" 
+                    placeholder="Pesquisar..." 
+                    icon="magnifying-glass"
+                    value="{{ request('search') }}" 
+                />
+            </div>
+            <flux:button type="submit" variant="primary">Buscar</flux:button>
+            @if(request('search'))
+                <flux:button href="{{ route('fornecedores.index') }}" variant="subtle">Limpar</flux:button>
+            @endif
+        </form>
 
         <div class="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-700">
             <table class="w-full text-left text-sm">

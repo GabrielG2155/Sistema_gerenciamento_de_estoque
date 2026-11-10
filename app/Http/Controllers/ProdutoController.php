@@ -13,9 +13,19 @@ class ProdutoController extends Controller
     /**
      * Exibe a listagem de produtos.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = Produto::with(['categoria', 'marca', 'fornecedor'])->latest()->get();
+        $query = Produto::with(['categoria', 'marca', 'fornecedor']);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nome', 'like', "%{$search}%")
+                ->orWhere('descricao', 'like', "%{$search}%");
+            });
+        }
+
+        $produtos = $query->latest()->get();
 
         return view('produtos.index', compact('produtos'));
     }

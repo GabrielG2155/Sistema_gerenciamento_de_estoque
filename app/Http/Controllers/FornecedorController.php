@@ -8,9 +8,20 @@ use Illuminate\Validation\Rule;
 
 class FornecedorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $fornecedores = Fornecedor::latest()->get();
+        $query = Fornecedor::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nome', 'like', "%{$search}%")
+                ->orWhere('cnpj', 'like', "%{$search}%")
+                ->orWhere('telefone', 'like', "%{$search}%");
+            });
+        }
+
+        $fornecedores = $query->latest()->get();
 
         return view('fornecedores.index', compact('fornecedores'));
     }

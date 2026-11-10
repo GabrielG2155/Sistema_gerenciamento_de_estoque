@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categorias = Categoria::all();
+        $query = Categoria::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nome', 'like', "%{$search}%")
+                ->orWhere('descricao', 'like', "%{$search}%");
+            });
+        }
+
+        $categorias = $query->latest()->get();
+
         return view('categorias.index', compact('categorias'));
     }
 

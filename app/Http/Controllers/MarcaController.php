@@ -5,16 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 
+
 class MarcaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+
+    public function index(Request $request)
     {
-        $marcas = Marca::all();
+        $query = Marca::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nome', 'like', "%{$search}%")
+                ->orWhere('descricao', 'like', "%{$search}%");
+            });
+        }
+
+        $marcas = $query->latest()->get();
+
         return view('marcas.index', compact('marcas'));
-        //
     }
 
     /**
